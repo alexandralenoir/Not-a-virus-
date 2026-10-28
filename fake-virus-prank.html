@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>System Warning</title>
+<title>Cyber Chaos Simulator</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Arial, sans-serif; }
-  body { background: #0078d7; height: 100vh; overflow: hidden; }
+  body { background: #170b2e; height: 100vh; overflow: hidden; }
   #desktop-msg {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     color: white; text-align: center; opacity: 0.85; pointer-events: none;
@@ -14,10 +14,14 @@
   #desktop-msg p { font-size: 15px; }
   .popup {
     position: absolute; width: 340px; background: #f0f0f0; border: 1px solid #555;
-    box-shadow: 6px 6px 18px rgba(0,0,0,.5); user-select: none; z-index: 10;
+    box-shadow: 6px 6px 18px rgba(0,0,0,.5); user-select: none; z-index: 10; animation: shake 0.25s infinite alternate;
   }
+
+ @keyframes shake { 
+    from { transform: translateX(-2px); }
+    to { transform: translateX(2px); }
   .titlebar {
-    background: linear-gradient(#d32f2f, #b71c1c); color: #fff; padding: 6px 10px;
+    background: linear-gradient(90deg, #6d28d9, #db2777); color: #fff; padding: 6px 10px;
     display: flex; justify-content: space-between; align-items: center;
     font-size: 13px; font-weight: 600; cursor: move;
   }
@@ -72,7 +76,10 @@
     { t: "⚠ TROJAN WARNING", h: "47 VIRUSES FOUND", b: "Your computer has more viruses than a hospital.", d: "Threat: Adware.PopUpGenerator" },
     { t: "⚠ URGENT", h: "YOUR HARD DRIVE IS SAD", b: "Morale in sector 7G has collapsed completely.", d: "Threat: EmotionalDamage.exe" },
     { t: "⚠ FINAL WARNING", h: "THIS IS THE FINAL WARNING", b: "There will be more final warnings. Many more.", d: "Threat: Spam.Popup.Recursive" },
-    { t: "⚠ SYSTEM WARNING", h: "ERROR: TOO MANY WARNINGS", b: "The warning system itself is now infected.", d: "Threat: Meta.Virus.Joke" }
+    { t: "⚠ SYSTEM WARNING", h: "ERROR: TOO MANY WARNINGS", b: "The warning system itself is now infected.", d: "Threat: Meta.Virus.Joke" },
+    { t: "⚠ COOKIE BREACH", h: "COOKIES HAVE ESCAPED!", b: "Your browser cookies are planning a rebellion.", d: "Threat: Cookie.Monster.exe" },
+    { t: "⚠ ROBOT TAKEOVER", h: "THE TOASTER IS IN CHARGE!", b: "Your kitchen appliances have elected a new leader.", d: "Threat: Toaster.AI" },
+    { t: "⚠ GALACTIC ERROR", h: "ALIENS FOUND IN YOUR CACHE!", b: "Suspicious space crumbs detected in your browser.", d: "Threat: Alien.Cache.404" }
   ];
   let popups = 0;
   const MAX = 160;
@@ -100,13 +107,18 @@
       '<div class="titlebar"><span>' + w.t + '</span><span class="x">✕</span></div>' +
       '<div class="body"><div class="icon">☠</div><div class="text"><b>' + w.h + '</b><br>' + w.b +
       '<div class="small">' + w.d + '</div></div></div>' +
-      '<div class="footer"><button class="stop-btn">CLICK HERE TO STOP THE INFECTION</button></div>';
+      '<div class="footer"><button class="stop-btn">TRY TO FIX THE CHAOS!</button></div>';
 
     // The big red button: closes this one... and spawns two more.
     el.querySelector('.stop-btn').addEventListener('click', () => {
-      el.remove(); popups--;
-      spawnPopup(); spawnPopup();
-      updateHud();
+      el.remove();
+      popups--;
+      
+     spawnPopup(); 
+     spawnPopup();
+     spawnPopup();
+     
+     updateHud();
     });
     // The X button is worse. Obviously.
     el.querySelector('.x').addEventListener('click', () => {
